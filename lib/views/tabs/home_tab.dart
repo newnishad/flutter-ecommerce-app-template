@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_template/controllers/products_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class HomeTab extends StatefulWidget {
@@ -34,12 +35,13 @@ class _HomeTabState extends State<HomeTab> {
             color: const Color.fromRGBO(244, 245, 247, 1),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const TextField(
+          child: TextField(
             decoration: InputDecoration(
               hintText: "Search in Swipexyz",
-              prefixIcon: Icon(
-                Icons.search,
+              prefixIcon: SvgPicture.asset(
+                "resources/search.svg",
                 color: Colors.grey,
+                fit: BoxFit.scaleDown,
               ),
               border: InputBorder.none,
             ),

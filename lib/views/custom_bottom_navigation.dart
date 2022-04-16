@@ -1,6 +1,6 @@
 import 'package:ecommerce_template/controllers/tab_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
@@ -46,7 +46,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   }
 
   bottomNavigationItem({
-    required IconData icon,
+    required String asset,
     required String text,
     required Function() onTap,
     required int tabIndex,
@@ -62,11 +62,14 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
               borderRadius: BorderRadius.circular(Get.size.width / 2)),
           child: Column(
             children: [
-              Icon(
-                icon,
+              SvgPicture.asset(
+                asset,
                 color: _mainScreenController.currentTab.value == tabIndex
                     ? const Color.fromRGBO(241, 82, 35, 1)
                     : Colors.grey,
+              ),
+              SizedBox(
+                height: Get.size.height * 0.01,
               ),
               Text(
                 text,
@@ -85,7 +88,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
 
   Widget homeButton() {
     return bottomNavigationItem(
-      icon: Icons.home,
+      asset: "resources/home.svg",
       text: "Home",
       onTap: () {},
       tabIndex: 0,
@@ -94,7 +97,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
 
   Widget exploreButton() {
     return bottomNavigationItem(
-      icon: Icons.explore,
+      asset: "resources/explore.svg",
       text: "Explore",
       onTap: () {
         showExploreDialog();
@@ -188,6 +191,24 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
     ));
   }
 
+  Widget inboxButton() {
+    return bottomNavigationItem(
+      asset: "resources/inbox.svg",
+      text: "Inbox",
+      onTap: () {},
+      tabIndex: 2,
+    );
+  }
+
+  Widget shopButton() {
+    return bottomNavigationItem(
+      asset: "resources/shop.svg",
+      text: "Shop",
+      onTap: () {},
+      tabIndex: 3,
+    );
+  }
+
   followButton() {
     return Container(
       padding: EdgeInsets.symmetric(
@@ -200,9 +221,9 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
       ),
       child: Row(
         children: [
-          const FaIcon(
-            FontAwesomeIcons.userPlus,
-            color: Color.fromRGBO(241, 82, 35, 1),
+          SvgPicture.asset(
+            "resources/add_person.svg",
+            color: const Color.fromRGBO(241, 82, 35, 1),
           ),
           SizedBox(
             width: Get.size.width * 0.02,
@@ -216,24 +237,6 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget inboxButton() {
-    return bottomNavigationItem(
-      icon: Icons.inbox,
-      text: "Inbox",
-      onTap: () {},
-      tabIndex: 2,
-    );
-  }
-
-  Widget shopButton() {
-    return bottomNavigationItem(
-      icon: Icons.shop,
-      text: "Shop",
-      onTap: () {},
-      tabIndex: 3,
     );
   }
 
